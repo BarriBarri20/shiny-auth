@@ -3,7 +3,7 @@ the file creation and the full link : /etc/nginx/sites-available/djangoshiny
 the code inside this file will be : 
 You can modify the link as you want but you have to change the location of the shiny app in the code.
 and make sure that you are running the app 
-
+after this run this command : sudo ln -s /etc/nginx/sites-available/djangoshiny /etc/nginx/sites-enabled/djangoshiny
 
 # declare your Django app
 upstream djangoapp_server {
