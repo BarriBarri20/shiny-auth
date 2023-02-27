@@ -1,0 +1,30 @@
+<h1>We are in the wrapping page!</h1>
+
+<div id="contents"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+
+    $.getJSON('{% url "shiny_contents" %}', function (data) {
+      {% comment %} '{% url "shiny_contents" %}' this link her for consuming the api from the view function specified in the url file{% endcomment %}
+      var iframe = document.createElement("iframe");
+      $('#contents').append(iframe);
+      {% comment %} here you can play with frame and and its style {% endcomment %}
+      {% comment %} this code is written in jinja template {% endcomment %}
+
+      iframe.contentWindow.document.open();
+      iframe.width = "100%";
+      iframe.height = "100%";
+      iframe.contentWindow.document.write(data.html_contents);
+      iframe.contentWindow.document.close();
+
+      // Attempt circumvention
+      if (iframe.contentWindow.WebSocket)
+          WebSocket = iframe.contentWindow.WebSocket;
+    });
+
+  });
+
+</script>
